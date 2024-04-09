@@ -4,7 +4,7 @@
 
         <div class="mainArea" id="mainArea">
           <% @users.each do |user| %>
-          <% if user != current_user && !user.liked_by?(current_user)  %>
+          <% if user != current_user && !user.liked_by?(current_user) && !current_user.liked_by?(user) %>
             <div class="mainBigArea">
               <% if user.sex.id == 2 %>
                 <%= image_tag 'moonball.png', class:"moonball" %>

@@ -7,11 +7,10 @@
 
         <div class="mainArea">
           
-            <ul class="chatArea">
-              
+            <ul class="chatArea">              
               <% @matches.each do |match| %>
-                 <% @users.each do |user| %>   
-                   <% unless user == current_user || !user.liked_by?(current_user) && !user.likes_by?(current_user) %>
+                <% @users.each do |user| %>   
+                   <% if user != current_user && user.liked_by?(current_user) || current_user.liked_by?(user)%>
                     <li> 
                       <%= link_to user_match_path(id:user, user_id: user.id) do %>  
                         <%= image_tag user.icon.image_path, class: "chatIcon"%>
@@ -21,12 +20,10 @@
                       <% end %>
                     </li>
                   <% end %>
-                  <% end %>
+                <% end %>
               <% end %>
-          </ul>
-          
+            </ul>          
         </div>
-
 </div>
 
 
