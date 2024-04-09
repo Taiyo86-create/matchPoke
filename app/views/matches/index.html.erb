@@ -13,7 +13,7 @@
                       <%= link_to user_match_path(id:user, user_id: user.id) do %>  
                         <%= image_tag user.icon.image_path, class: "chatIcon"%>
                       <% end %>
-                      <%= link_to new_user_match_messages_path(id:user, user_id: user.id, match_id: matches.id) do %>
+                      <%= link_to new_user_match_messages_path(id:user, user_id: user.id, match_id: @match.id) do %>
                         <%= user.nick_name%>
                       <% end %>
                     </li>

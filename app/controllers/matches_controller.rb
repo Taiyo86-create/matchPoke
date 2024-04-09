@@ -3,6 +3,7 @@ class MatchesController < ApplicationController
     @users = User.all
     @matches = Match.all
     @match_users = @users.select { |user| current_user.liked_by?(user) }
+    @match = @matches.first
   end
   def show
     @user = User.find(params[:id])
