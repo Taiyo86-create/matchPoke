@@ -1,0 +1,32 @@
+<header class="header">
+    <%= link_to image_tag("monbo1.png", class:"monbo"), "#" %>
+    <h1>チャット<span>一覧</span></h1>
+</header>  
+<div class="main">
+        <%= render  "share/side_bar" %>
+
+        <div class="mainArea">
+          
+            <ul class="chatArea">
+              
+              <% @matches.each do |match| %>
+                 <% @users.each do |user| %>   
+                   <% unless user == current_user || !user.liked_by?(current_user) && !user.likes_by?(current_user) %>
+                    <li> 
+                      <%= link_to user_match_path(id:user, user_id: user.id) do %>  
+                        <%= image_tag user.icon.image_path, class: "chatIcon"%>
+                      <% end %>
+                      <%= link_to new_user_match_messages_path(id:user, user_id: user.id, match_id: match.id) do %>
+                        <%= user.nick_name%>
+                      <% end %>
+                    </li>
+                  <% end %>
+                  <% end %>
+              <% end %>
+          </ul>
+          
+        </div>
+
+</div>
+
+

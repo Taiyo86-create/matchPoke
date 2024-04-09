@@ -1,0 +1,30 @@
+<%# 相手から %>
+<%= render 'share/header' %>
+<div class="main">
+        <%= render  "share/side_bar" %>
+
+        <div class="mainArea" id="mainArea">
+          <% @users.each do |user| %>
+          <% unless user == current_user || !current_user.match&.user_id.present?  %>
+            <div class="mainBigArea">
+              <% if user.sex.id == 2 %>
+                <%= image_tag 'moonball.png', class:"moonball" %>
+              <% end %>
+              <% if user.sex.id == 3 %>
+                <%= image_tag 'loveboll.png', class:"moonball" %>
+              <% end %>
+              <div class="mainBox">
+                <%= link_to user_match_path(id:user, user_id: user.id) do %>
+                    <%= image_tag user.icon.image_path, class:"icon" %>
+                <% end %>
+                <ul class="intro">
+                    <li><%= user.nick_name %></li>
+                    <li> <%= user.age.name %></li>
+                </ul>
+              </div>
+            </div>
+
+          <% end %>
+          <% end %>
+        </div>
+</div>

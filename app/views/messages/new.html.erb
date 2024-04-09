@@ -1,0 +1,35 @@
+<header class="header">
+    <%= link_to image_tag("monbo1.png", class:"monbo"), "#" %>
+    <h1>メッセージ</h1>
+</header>  
+<div class="main">
+        <%= render  "share/side_bar" %>
+
+      <div class="talkArea">
+        <div class="message">
+          <% @messages.each do |message| %>
+            <div class="upper-message">
+                <div class="message-user">
+                  <%= message.user.nick_name %>
+                </div>
+                <div class="message-date">
+                  <%= l message.created_at %>
+                </div>
+            </div>
+            <div class="lower-message">
+                <div class="message-content">
+                  <%= message.content%>
+                </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <%= form_with model: @message, url: user_match_messages_path, local: true do |form| %>
+          <div class="talkSubmit">
+            <%= form.text_field :content, class: "textArea" %>
+            <%= form.submit "送信", class: "submit-btn" %>
+          </div>
+        <% end %>
+
+      </div>
+</div>

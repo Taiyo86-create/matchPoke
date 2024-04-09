@@ -1,0 +1,41 @@
+<div class="mypage">
+    <div class="mypageLeft">
+        <div class="mypageIcon">
+            <%= image_tag @user.icon.image_path, class: 'mypageImg' %>
+        </div>
+    </div>
+
+    <div class="mypageRight">
+        <ul class="mypageList">
+            <li>名前: <%= @user.nick_name %> </li>
+            <li>年齢: <%= @user.age.name %> </li>
+            <li>性別: <%= @user.sex.name %> </li>
+            <li>職業: <%= @user.status.name %> </li>
+            <li>好きなタイトル: <%= @user.favorite_title.name %></li>
+            <li>ひとこと: <%= @user.profile %> </li>
+        </ul>
+
+        <div class="rightOption">
+          <% if current_user.id == @user.id %>
+            <div class="optionBox">
+                編集する
+            </div>
+
+            <div class="optionBox">
+                <%= link_to  "ログアウト", destroy_user_session_path, data: { turbo_method: :delete} %>
+            </div>
+          <% end %>
+            <% if current_user.id != @user.id %>
+                <div class="optionBox">
+                    <% unless @user.liked_by?(current_user) %>
+                        <%= link_to "君に決めた", user_matches_path(@user.id), class: "match-btn", data: { turbo_method: :post } %>
+                    <% else %>
+                        <div class="matched-btn">お誘い済み</div>                    
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+    <%= render  "share/return" %>
+</div>
