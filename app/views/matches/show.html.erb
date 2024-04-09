@@ -27,10 +27,10 @@
           <% end %>
             <% if current_user.id != @user.id %>
                 <div class="optionBox">
-                    <% if @user.liked_by?(current_user) || !current_user.liked_by?(@user)   %>
-                        <%= link_to "君に決めた", user_matches_path(@user.id), class: "match-btn", data: { turbo_method: :post } %> 
-                    <% else %>                      
-                        <div class="matched-btn">お誘い(誘われ)済み</div>                 
+                    <% if current_user.liked_by?(@user) || @user.liked_by?(current_user) %>
+                        <div class="matched-btn">お誘い(誘われ)済み</div>
+                    <% else %>
+                        <%= link_to "君に決めた", user_matches_path(@user.id), class: "match-btn", data: { turbo_method: :post } %>
                     <% end %>
                 </div>
             <% end %>
