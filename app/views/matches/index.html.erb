@@ -6,17 +6,31 @@
         <%= render  "share/side_bar" %>
 
         <div class="mainArea">
-          
-            <ul class="chatArea"> 
-              <% @match_users.each do |user| %>
-                    <li> 
-                      <%= link_to user_match_path(id:user, user_id: user.id) do %>  
-                        <%= image_tag user.icon.image_path, class: "chatIcon"%>
-                      <% end %>
-                      <%= link_to new_user_match_messages_path(id:user, user_id: user.id, match_id: @match.id) do %>
-                        <%= user.nick_name%>
-                      <% end %>
-                    </li>
+            <ul class="chatArea">           
+              <% @matches.each do |match| %>
+              <%# いいねしてきたのを表示 %>
+               <% if current_user.liked_by?(match.likes) %>
+                <li>                
+                  <%= link_to user_match_path(id: match.likes_id, user_id: match.likes_id) do %>
+                    <%= image_tag match.likes.icon.image_path, class: "chatIcon" %>
+                  <% end %>
+                  <%= link_to new_user_match_messages_path(user_id: match.likes_id, match_id: match.id) do %>
+                    <%= match.likes.nick_name %>
+                   <% end %>
+                </li>
+               <% end %>
+
+               <%# いいねしたのを表示 %>
+               <% if match.liked.liked_by?(current_user) %>
+                <li>                
+                  <%= link_to user_match_path(id: match.liked.id, user_id: match.liked.id) do %>
+                    <%= image_tag match.liked.icon.image_path, class: "chatIcon" %>
+                  <% end %>
+                  <%= link_to new_user_match_messages_path(user_id: match.likes_id, match_id: match.id) do %>
+                    <%= match.liked.nick_name %>
+                  <% end %>
+                </li>
+               <% end %>
               <% end %>
             </ul>          
         </div>
