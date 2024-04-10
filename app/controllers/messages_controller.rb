@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   def new
-    @messages = Message.all
-    @message = Message.new
     @match = Match.find(params[:match_id])
+    @messages = @match.messages.includes(:user)
+    @message = Message.new(match_id: @match.id)
   end
 
   def create
@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to new_user_match_messages_path(id: current_user.id, user_id: current_user.id, match_id: @match.id)
     else
+      @messages = @match.messages.includes(:user)
       render :new
     end
   end
@@ -18,6 +19,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content).merge(user_id: current_user.id)
+    params.require(:message).permit(:content, :match_id).merge(user_id: current_user.id)
   end
 end

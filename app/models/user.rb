@@ -25,4 +25,8 @@ class User < ApplicationRecord
            liked =  passive_matches.find_by(likes_id: user.id)
            return liked.present?
          end
+
+         def match_users
+          User.all.select { |user| current_user.liked_by?(user) || user.liked_by?(current_user) }
+         end
 end
