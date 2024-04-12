@@ -30,7 +30,7 @@
           <% end %>
         </div>
         
-        <%= form_with model: @message, url: user_match_messages_path, local: true do |form| %>
+        <%= form_with model: @message, url: user_match_messages_path, local: true, id: "form" do |form| %>
           <div class="talkSubmit">
             <%= form.hidden_field :match_id, value: @match.id %>
             <%= form.text_field :content, class: "textArea" %>
