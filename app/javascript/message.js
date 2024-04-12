@@ -9,6 +9,12 @@ function post (){
         XHR.open("POST", `/users/${user_id}/matches/${match_id}/messages`, true);
         XHR.responseType = "json";
         XHR.send(formData);
+        XHR.onload = () => {
+        const item = XHR.response.post;
+        const html = `
+       
+        `;
+        };
     });
    };
     window.addEventListener('turbo:load', post);
