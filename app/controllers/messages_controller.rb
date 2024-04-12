@@ -1,8 +1,9 @@
 class MessagesController < ApplicationController
   def new
     @match = Match.find(params[:match_id])
+    @user = User.find(params[:user_id])
     @messages = @match.messages.includes(:user)
-    @message = Message.new(match_id: @match.id)
+    @message = Message.new(user_id: @user.id, match_id: @match.id)
   end
 
   def create
