@@ -1,6 +1,7 @@
 function post (){
     const form = document.getElementById("form");
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
         const formData = new FormData(form);
         const user_id = document.getElementById("user_id").value; // ユーザーIDを取得
         const match_id = document.getElementById("match_id").value; // マッチIDを取得
