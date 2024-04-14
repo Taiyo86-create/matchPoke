@@ -36,7 +36,7 @@
           <div class="talkSubmit">
             <%= form.hidden_field :user_id, value: current_user.id, id: "user_id" %>
             <%= form.hidden_field :match_id, value: @match.id, id: "match_id" %>
-            <%= form.text_field :content, class: "textArea", id: "formText" %>
+            <%= form.text_field :content, class: "textArea", id: "content" %>
             <%= form.submit "送信", class: "submit-btn" %>
           </div>
         <% end %>
