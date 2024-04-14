@@ -9,14 +9,16 @@
         <div class="message">
           <% @messages.each do |message| %>
            <% if current_user.id == message.user_id %>
+           <div id="list">
             <div class="right-message-container">
-                <div class="message-date"><%= l message.created_at %></div>
+                <div class="message-date"><%= message.created_at %></div>
                 <div class="right-message">
                   <div class="message-content">
                     <%= message.content %>
                   </div>
                 </div>
             </div>
+           </div>
            <% else %>
             <div class="left-message-container">
                 <div class="left-message">
