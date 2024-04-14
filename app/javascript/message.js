@@ -10,10 +10,20 @@ function post (){
         XHR.responseType = "json";
         XHR.send(formData);
         XHR.onload = () => {
+        const list = document.getElementById("list");
+        const formText = document.getElementById("content");
         const item = XHR.response.post;
         const html = `
-       
-        `;
+        <div class="right-message-container">
+          <div class="message-date">${item.created_at}</div>
+            <div class="right-message">
+                <div class="message-content">
+                    ${item.content}
+                </div>
+            </div>
+        </div> `;
+        list.insertAdjacentHTML("afterend", html);
+        formText.value = "";
         };
     });
    };
