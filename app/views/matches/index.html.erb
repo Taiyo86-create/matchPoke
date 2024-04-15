@@ -26,7 +26,7 @@
                   <%= link_to user_match_path(id: match.liked.id, user_id: match.liked.id) do %>
                     <%= image_tag match.liked.icon.image_path, class: "chatIcon" %>
                   <% end %>
-                  <%= link_to new_user_match_messages_path(user_id: match.likes_id, match_id: match.id) do %>
+                  <%= link_to new_user_match_messages_path(user_id: match.likes_id, match_id: match.id), data: { turbo: false } do %>
                     <%= match.liked.nick_name %>
                   <% end %>
                 </li>
