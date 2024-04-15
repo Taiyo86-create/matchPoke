@@ -9,14 +9,16 @@
         <div class="message">
           <% @messages.each do |message| %>
            <% if current_user.id == message.user_id %>
+           <div id="list">
             <div class="right-message-container">
-                <div class="message-date"><%= l message.created_at %></div>
+                <div class="message-date"><%= message.created_at %></div>
                 <div class="right-message">
                   <div class="message-content">
                     <%= message.content %>
                   </div>
                 </div>
             </div>
+           </div>
            <% else %>
             <div class="left-message-container">
                 <div class="left-message">
@@ -30,10 +32,11 @@
           <% end %>
         </div>
         
-        <%= form_with model: @message, url: user_match_messages_path, local: true do |form| %>
+        <%= form_with model: @message, url: user_match_messages_path, local: true, id: "form" do |form| %>
           <div class="talkSubmit">
-            <%= form.hidden_field :match_id, value: @match.id %>
-            <%= form.text_field :content, class: "textArea" %>
+            <%= form.hidden_field :user_id, value: current_user.id, id: "user_id" %>
+            <%= form.hidden_field :match_id, value: @match.id, id: "match_id" %>
+            <%= form.text_field :content, class: "textArea", id: "content" %>
             <%= form.submit "送信", class: "submit-btn" %>
           </div>
         <% end %>
