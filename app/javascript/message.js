@@ -22,7 +22,7 @@ function post (){
                     </div>
                 </div>
             </div> `;
-        list.insertAdjacentHTML("afterend", html);
+        list.insertAdjacentHTML("beforeend", html);
         formText.value = "";
         };
     });
