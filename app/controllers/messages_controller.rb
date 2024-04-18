@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     @match = Match.find(params[:match_id])
     @message = @match.messages.new(message_params)
     if @message.save
-      render json:{ message: @message }
+      render json:{ post: @message }
     else
       @messages = @match.messages.includes(:user)
       render :new
@@ -20,6 +20,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content, :match_id).merge(user_id: current_user.id)
+    params.require(:message).permit(:content, :match_id, :user_id)
   end
 end

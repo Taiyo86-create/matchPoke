@@ -6,7 +6,10 @@ function post (){
         const user_id = document.getElementById("user_id").value; // ユーザーIDを取得
         const match_id = document.getElementById("match_id").value; // マッチIDを取得
         const XHR = new XMLHttpRequest();
+        console.log(user_id)
+        console.log(match_id)
         XHR.open("POST", `/users/${user_id}/matches/${match_id}/messages`, true);
+        console.log(XHR)
         XHR.responseType = "json";
         XHR.send(formData);
         XHR.onload = () => {
@@ -22,8 +25,9 @@ function post (){
                     </div>
                 </div>
             </div> `;
-        list.insertAdjacentHTML("beforeend", html);
+        list.insertAdjacentHTML("afterend", html);
         formText.value = "";
+        console.log('sssss')
         };
     });
    };
