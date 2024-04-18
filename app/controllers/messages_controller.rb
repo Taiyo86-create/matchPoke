@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     @match = Match.find(params[:match_id])
     @message = @match.messages.new(message_params)
     if @message.save
-      render json:{ post: @message }
+      render json:{ message: @message }
     else
       @messages = @match.messages.includes(:user)
       render :new
