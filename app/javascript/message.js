@@ -25,7 +25,7 @@ function post (){
                     </div>
                 </div>
             </div> `;
-        list.insertAdjacentHTML("afterend", html);
+        list.insertAdjacentHTML("afterbegin", html);
         formText.value = "";
         console.log('sssss')
         };

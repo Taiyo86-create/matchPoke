@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   def new
     @match = Match.find(params[:match_id])
     @user = User.find(params[:user_id])
-    @messages = @match.messages.includes(:user)
+    @messages = @match.messages
     @message = Message.new(user_id: @user.id, match_id: @match.id)
   end
 
