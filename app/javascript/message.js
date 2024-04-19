@@ -25,9 +25,8 @@ function post (){
                     </div>
                 </div>
             </div> `;
-        list.insertAdjacentHTML("afterbegin", html);
+        list.insertAdjacentHTML("beforeend", html);
         formText.value = "";
-        console.log('sssss')
         };
     });
    };

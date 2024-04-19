@@ -7,18 +7,36 @@
 
       <div class="talkArea">
         <div class="message">
+         <div class="right-message-container">
+                <div class="message-date">2024-04-01</div>
+                <div class="right-message">
+                  <div class="message-content">
+                    あなたのメッセージです
+                  </div>
+                </div>
+         </div>
+
+         <div class="left-message-container">
+                <div class="message-date">2024-04-01</div>
+                <div class="left-message">
+                  <div class="message-content">
+                    相手のメッセージです
+                  </div>
+                </div>
+         </div>
           <% @messages.each do |message| %>
            <% if current_user.id == message.user_id %>
-           <div id="list">
-            <div class="right-message-container">
+              <div class="right-message-container">
                 <div class="message-date"><%= message.created_at %></div>
                 <div class="right-message">
                   <div class="message-content">
                     <%= message.content %>
                   </div>
                 </div>
-            </div>
-           </div>
+              </div>
+              <div id="list">
+              </div>
+
            <% else %>
             <div class="left-message-container">
                 <div class="left-message">
